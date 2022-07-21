@@ -61,7 +61,10 @@ struct Home: View {
                             }
                         }
                 )
-        }
+                // make a navigation no space padding top (disable to take effect)
+                .navigationBarTitle("", displayMode: .inline)
+        // to show navigation on ipad device
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
