@@ -113,8 +113,8 @@ struct Content: View {
                 CellContent(
                     ImageContent: "data1",
                     ProfileContent: "cindy",
-                    TitleContent: "Keshi Playlist (Loving Cindy)",
-                    DescriptionContent: "ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar",
+                    TitleContent: "Keshi Playlist (Cindy Loving)",
+                    DescriptionContent: "ini adalah Lagu Terbaik",
                     DurationContent: "10:03"
                 )
                 
@@ -172,21 +172,38 @@ struct CellContent: View {
         }
         // alignment verticalAlignment. top make a flat top content
         HStack(alignment: VerticalAlignment.top) {
-            Image(ProfileContent)
-                .renderingMode(.original)
-                .resizable()
-                .frame(width: 30, height: 30)
-                .clipShape(Circle())
+            DetailProfile(baseProfile: ProfileContent)
+                .frame(maxWidth: 30, alignment: .leading)
             
-            // alignment .leading make a content start from left
-            VStack(alignment: .leading) {
-                Text(TitleContent).font(.headline)
-                Text(DescriptionContent).font(.caption)
-                Spacer()
-            }
+            DetailDescription(baseTitle: TitleContent, baseDesc: DescriptionContent)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             Image(systemName: "list.bullet")
                 .padding(.top, 5)
+        }
+    }
+}
+
+struct DetailProfile: View {
+    var baseProfile: String
+    var body: some View {
+        Image(baseProfile)
+            .renderingMode(.original)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .clipShape(Circle())
+    }
+}
+
+struct DetailDescription: View {
+    var baseTitle: String
+    var baseDesc: String
+    var body: some View {
+        // alignment .leading make a content start from left
+        VStack(alignment: .leading) {
+            Text(baseTitle).font(.headline)
+            Text(baseDesc).font(.caption)
+            Spacer()
         }
     }
 }
