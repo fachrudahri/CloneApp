@@ -49,6 +49,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+.previewInterfaceOrientation(.portrait)
     }
 }
 
@@ -109,131 +110,83 @@ struct Content: View {
     var body: some View {
         List {
             VStack(spacing: 10) {
-                // make a stack start from bottom right
-                ZStack(alignment: .bottomTrailing) {
-                    Image("data1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    Text("10:00")
-                        .font(.caption)
-                        .padding(.all, 5)
-                        .foregroundColor(Color.white)
-                        .background(Color.black)
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .padding(.bottom, 5)
-                }
-                // alignment verticalAlignment. top make a flat top content
-                HStack(alignment: VerticalAlignment.top) {
-                    Image("cindy")
-                        .renderingMode(.original)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .clipShape(Circle())
-                    
-                    // alignment .leading make a content start from left
-                    VStack(alignment: .leading) {
-                        Text("Keshi Playlist (Loving Cindy)").font(.headline)
-                        Text("ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar").font(.caption)
-                        Spacer()
-                    }
-                    
-                    Image(systemName: "list.bullet")
-                        .padding(.top, 5)
-                }
+                CellContent(
+                    ImageContent: "data1",
+                    ProfileContent: "cindy",
+                    TitleContent: "Keshi Playlist (Loving Cindy)",
+                    DescriptionContent: "ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar",
+                    DurationContent: "10:03"
+                )
                 
-                ZStack(alignment: .bottomTrailing) {
-                    Image("data2")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    Text("10:00")
-                        .font(.caption)
-                        .padding(.all, 5)
-                        .foregroundColor(Color.white)
-                        .background(Color.black)
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .padding(.bottom, 5)
-                }
-                HStack(alignment: VerticalAlignment.top) {
-                    Image("cindy")
-                        .renderingMode(.original)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .clipShape(Circle())
-                    
-                    VStack(alignment: .leading) {
-                        Text("Studio Ghibli - Relaxing piano medley LoFi").font(.headline)
-                        Text("ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar").font(.caption)
-                        Spacer()
-                    }
-                    
-                    Image(systemName: "list.bullet")
-                        .padding(.top, 5)
-                }
+                CellContent(
+                    ImageContent: "data2",
+                    ProfileContent: "cindy",
+                    TitleContent: "Studio Ghibli - Relaxing Piano Medly",
+                    DescriptionContent: "ini adalah sebait dari ringkasan mengenai lagu ini",
+                    DurationContent: "08:15"
+                )
                 
-                ZStack(alignment: .bottomTrailing) {
-                    Image("data3")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    Text("10:00")
-                        .font(.caption)
-                        .padding(.all, 5)
-                        .foregroundColor(Color.white)
-                        .background(Color.black)
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .padding(.bottom, 5)
-                }
-                HStack(alignment: VerticalAlignment.top) {
-                    Image("cindy")
-                        .renderingMode(.original)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .clipShape(Circle())
-                    
-                    VStack(alignment: .leading) {
-                        Text("Positif Morning - Chill & Vibes").font(.headline)
-                        Text("ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar").font(.caption)
-                        Spacer()
-                    }
-                    
-                    Image(systemName: "list.bullet")
-                        .padding(.top, 5)
-                }
+                CellContent(
+                    ImageContent: "data3",
+                    ProfileContent: "cindy",
+                    TitleContent: "Positive Morning - All Monday",
+                    DescriptionContent: "ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar",
+                    DurationContent: "10:03"
+                )
                 
-                ZStack(alignment: .bottomTrailing) {
-                    Image("data4")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    Text("10:00")
-                        .font(.caption)
-                        .padding(.all, 5)
-                        .foregroundColor(Color.white)
-                        .background(Color.black)
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .padding(.bottom, 5)
-                }
-                HStack(alignment: VerticalAlignment.top) {
-                    Image("cindy")
-                        .renderingMode(.original)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .clipShape(Circle())
-                    
-                    VStack(alignment: .leading) {
-                        Text("Mac Ayres - Full Album Exclv").font(.headline)
-                        Text("ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar").font(.caption)
-                        Spacer()
-                    }
-                    
-                    Image(systemName: "list.bullet")
-                        .padding(.top, 5)
-                }
+                CellContent(
+                    ImageContent: "data4",
+                    ProfileContent: "cindy",
+                    TitleContent: "Mac Ayres - Full Post Album",
+                    DescriptionContent: "ini adalah sebait dari ringkasan mengenai lagu ini cocok untuk di dengar",
+                    DurationContent: "10:03"
+                )
                 
             }
         }
         .listStyle(InsetListStyle())
+    }
+}
+
+struct CellContent: View {
+
+    var ImageContent: String
+    var ProfileContent: String
+    var TitleContent: String
+    var DescriptionContent: String
+    var DurationContent: String
+    
+    var body: some View {
+        ZStack(alignment: .bottomTrailing) {
+            Image(ImageContent)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+            Text(DurationContent)
+                .font(.caption)
+                .padding(.all, 5)
+                .foregroundColor(Color.white)
+                .background(Color.black)
+                .cornerRadius(5)
+                .padding(.trailing, 5)
+                .padding(.bottom, 5)
+        }
+        // alignment verticalAlignment. top make a flat top content
+        HStack(alignment: VerticalAlignment.top) {
+            Image(ProfileContent)
+                .renderingMode(.original)
+                .resizable()
+                .frame(width: 30, height: 30)
+                .clipShape(Circle())
+            
+            // alignment .leading make a content start from left
+            VStack(alignment: .leading) {
+                Text(TitleContent).font(.headline)
+                Text(DescriptionContent).font(.caption)
+                Spacer()
+            }
+            
+            Image(systemName: "list.bullet")
+                .padding(.top, 5)
+        }
     }
 }
