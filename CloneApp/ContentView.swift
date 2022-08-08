@@ -3,7 +3,7 @@
 //  CloneApp
 //
 //  Created by fachru dahri on 21/07/22.
-//
+//  Love this project
 
 import SwiftUI
 
